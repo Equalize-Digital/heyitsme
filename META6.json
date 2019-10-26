@@ -1,0 +1,35 @@
+{
+  "depends": [
+    "Cro::HTTP",
+    "Redis"
+  ],
+  "test-depends": [
+  ],
+  "description": "Write me!",
+  "authors": [
+    ""
+  ],
+  "source-url": "Write me!",
+  "meta-version": "0",
+  "license": "Write me!",
+  "auth": "Write me!",
+  "tags": [
+    ""
+  ],
+  "resources": [
+    "fake-tls/ca-crt.pem",
+    "fake-tls/server-crt.pem",
+    "fake-tls/server-key.pem"
+  ],
+  "support": {
+    "source": "Write me!"
+  },
+  "name": "heyitsme",
+  "perl": "6.*",
+  "build-depends": [
+  ],
+  "version": "0.0.1",
+  "provides": {
+    "Routes.pm6": "lib/Routes.pm6"
+  }
+}

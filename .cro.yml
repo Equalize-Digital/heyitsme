@@ -1,0 +1,15 @@
+---
+env:  []
+cro: 1
+endpoints: 
+  - 
+    protocol: https
+    port-env: HEYITSME_PORT
+    host-env: HEYITSME_HOST
+    id: https
+    name: HTTPS
+id: heyitsme
+links:  []
+entrypoint: service.p6
+name: heyitsme
+...
