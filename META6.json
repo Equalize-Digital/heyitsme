@@ -1,6 +1,7 @@
 {
   "depends": [
     "Cro::HTTP",
+    "Cro::WebApp",
     "Redis"
   ],
   "test-depends": [
@@ -30,6 +31,7 @@
   ],
   "version": "0.0.1",
   "provides": {
-    "Routes.pm6": "lib/Routes.pm6"
+    "Routes.pm6": "lib/Routes.pm6",
+    "XYZ::Claims": "lib/XYZ/Claims.pm6"
   }
 }
