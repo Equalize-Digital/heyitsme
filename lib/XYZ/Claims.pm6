@@ -8,12 +8,12 @@ class Claimer is export {
   }
 
   method new-claim(Str $path) {
-    if (self.claimed($path)) {
+    if (!self.claimed($path)) {
       my $secret = ('a'..'z').roll(128).join;
       $!r.set("path.$path.secret", $secret);
-      $secret
+      return $secret;
     } else {
-      ''
+      return '';
     }
   }
 
@@ -35,12 +35,15 @@ class Claimer is export {
     );
 
     if ($secret eq ($*R.get("path.$path.secret").decode)) {
-      # fill all the slurpy args
+      # fill all the given slurpy args
       for %ARGS-TO-REDIS-KEYS.kv -> $k, $v {
-        $!r.set($v, %slurp{$k});
+        $!r.set($v, %slurp{$k}) if %slurp{$k};
       }
       # and lay claim
       $!r.set("path.$path.claimed", "true");
+      return True;
+    } else {
+      return False;
     }
   }
 }
