@@ -6,12 +6,41 @@
 
     <p>first, send a get request to a url you want to claim. it'll return a freshly generated secret code.</p>
 
+    <pre>
+      curl https://heyitsme.xyz/YOUR_URL</pre>
+
+    <p>
+      that'll return a response like 
+    </p>
+
+    <pre>
+      secret code: YOUR_SECRET_CODE</pre>
+
+    <p>
+      make sure you save your secret code! it's the only way you'll be able to update your page.
+    </p> 
+
+    <p>
+      then, you can go ahead and update your page using the following curl command. you may have up to 5 links, but only 2 are listed for the sake of conciseness.
+    </p>
+
     <p>
       <pre>
-        put curl code here!
+        curl -d '{
+          "secret":"YOUR SECRET CODE",
+          "name":"YOUR NAME",
+          "pronouns":"YOUR PRONOUNS",
+          "bio":"YOUR BIOGRAPHY",
+          "link1text":"YOUR FIRST LINK",
+          "link1href":"YOUR FIRST LINK ADDRESS",
+          "link2text":"YOUR SECOND LINK",
+          "link2href":"YOUR SECOND LINK ADDRESS"
+        }' -H "Content-Type: application/json" -X POST http://heyitsme.xyz/YOUR_URL
       </pre>
     </p>
 
-    <p></p> 
+    <p>
+      alternatively, use the following form:
+    </p>
   </body>
 </html>

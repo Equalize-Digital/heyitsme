@@ -8,26 +8,24 @@ sub routes($r) is export {
             static 'static', 'index.html';
         }
         post -> {
-            content 'application/json', %Q({"error": "you can't claim the root path!"})
-        }
-        get -> 'hello' {
-            content 'text/html', '<i>hello</i>';
+            content 'application/json', '{"error": "you can\'t claim the root path!"}';
         }
         get -> *@p {
             my $p = @p.first;
             if $c.claimed($p) {
                 content 'text/plain', 'claimed';
             } else {
-                content 'text/plain', 'secret code: '~$c.new-claim($p);
+                content 'text/plain', "secret code: {$c.new-claim($p)}\n";
             }
         }
-        post -> *@p, *%params {
+        post -> *@p, :%params {
             my $p = @p.first;
             if %params<secret> {
-                $c.lay-claim($p, %params<secret>, %params);
-                redirect :see-other, "/$p";
+                if $c.lay-claim($p, %params<secret>, %params) {
+                    redirect :see-other, "/$p";
+                }
             } else {
-                content 'application/json', %Q({"error": "you need to provide a secret"})
+                content 'application/json', '{"error": "you need to provide a secret"}';
             }
         }
     }
