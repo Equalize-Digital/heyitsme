@@ -1,9 +1,6 @@
 use Cro::HTTP::Log::File;
 use Cro::HTTP::Server;
 use Routes;
-use Redis;
-
-our $*R = Redis.new(%*ENV<HEYITSME_REDIS_URL> || "127.0.0.1:6379");
 
 my Cro::Service $http = Cro::HTTP::Server.new(
     http => <1.1 2>,
@@ -17,7 +14,7 @@ my Cro::Service $http = Cro::HTTP::Server.new(
         certificate-file => %*ENV<HEYITSME_TLS_CERT> ||
             %?RESOURCES<fake-tls/server-crt.pem> || "resources/fake-tls/server-crt.pem",
     ),
-    application => routes($*R),
+    application => routes(),
     after => [
         Cro::HTTP::Log::File.new(logs => $*OUT, errors => $*ERR)
     ]
