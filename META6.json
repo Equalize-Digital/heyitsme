@@ -14,8 +14,11 @@
   "build-depends": [
   ],
   "provides": {
-    "Session": "lib/Session/Session.rakumod",
-    "Routes.pm6": "lib/Routes.pm6"
+    "Routers::Auth": "lib/Routers/Auth.rakumod",
+    "Session::Session": "lib/Session/Session.rakumod",
+    "Config": "lib/Config.rakumod",
+    "Routes": "lib/Routes.rakumod",
+    "service": "service.raku"
   },
   "auth": "Write me!",
   "description": "Write me!",

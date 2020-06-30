@@ -1,2 +1,2 @@
 #!/bin/bash
-raku -I. -MRoutes.pm6
+raku -I. -MRoutes

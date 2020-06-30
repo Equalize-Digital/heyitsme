@@ -4,19 +4,24 @@ use Cro::HTTP::Session::Persistent;
 
 unit module Session;
 
-class User does Cro::HTTP::Auth {
+class Session does Cro::HTTP::Auth {
     has $.email;
+
+    method is-logged-in(--> Bool) { defined $!email; }
+    method current-user() { $!email }
 }
+subset LoggedInSession of Session where *.is-logged-in;
+
 
 # https://github.com/croservices/cro-http/blob/master/lib/Cro/HTTP/Auth/Basic.pm6#L14
-class Session does Cro::HTTP::Auth::Basic[User, 'email'] {
+class SessionAuth does Cro::HTTP::Auth::Basic[Session, 'email'] {
     method authenticate(Str $email, Str $pass --> Bool) {
         # TODO
         $email eq 'equalizedigitaldev@gmail.com' && $pass eq 'cookiecookiecookie'
     }
 }
 
-class SessionStore does Cro::HTTP::Session::Persistent[Session] {
+class SessionStore does Cro::HTTP::Session::Persistent[SessionAuth] {
     # This will be called whenever we need to load session state, and the
     # session ID will be passed. Return `fail` if it is not possible
     # (e.g. no such session is found).
@@ -39,6 +44,7 @@ class SessionStore does Cro::HTTP::Session::Persistent[Session] {
         !!! 'Save session $session under $session-id, probably with a timestamp'
     }
 
+    # Clear old sessions
     method clear(--> Nil) {
         !!! 'Clear sessions older than the maximum age to retain them'
     }

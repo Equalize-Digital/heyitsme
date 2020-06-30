@@ -1,7 +1,7 @@
 ---
 id: heyitsme
 links:  []
-entrypoint: service.p6
+entrypoint: service.raku
 name: heyitsme
 endpoints: 
   - 
@@ -12,4 +12,6 @@ endpoints:
     protocol: https
 env:  []
 cro: 1
+ignore:
+  - MongoDB.log
 ...
