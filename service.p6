@@ -3,17 +3,18 @@ use Cro::HTTP::Server;
 use Routes;
 
 my Cro::Service $http = Cro::HTTP::Server.new(
-    http => <1.1 2>,
+    # http => <1.1 2>,
+    http => <1.1>,
     host => %*ENV<HEYITSME_HOST> ||
         die("Missing HEYITSME_HOST in environment"),
     port => %*ENV<HEYITSME_PORT> ||
         die("Missing HEYITSME_PORT in environment"),
-    tls => %(
-        private-key-file => %*ENV<HEYITSME_TLS_KEY> ||
-            %?RESOURCES<fake-tls/server-key.pem> || "resources/fake-tls/server-key.pem",
-        certificate-file => %*ENV<HEYITSME_TLS_CERT> ||
-            %?RESOURCES<fake-tls/server-crt.pem> || "resources/fake-tls/server-crt.pem",
-    ),
+    # tls => %(
+    #     private-key-file => %*ENV<HEYITSME_TLS_KEY> ||
+    #         %?RESOURCES<fake-tls/server-key.pem> || "resources/fake-tls/server-key.pem",
+    #     certificate-file => %*ENV<HEYITSME_TLS_CERT> ||
+    #         %?RESOURCES<fake-tls/server-crt.pem> || "resources/fake-tls/server-crt.pem",
+    # ),
     application => routes(),
     after => [
         Cro::HTTP::Log::File.new(logs => $*OUT, errors => $*ERR)

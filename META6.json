@@ -7,13 +7,14 @@
   "name": "heyitsme",
   "source-url": "Write me!",
   "depends": [
-    "Cro::HTTP"
+    "Cro::HTTP", "MongoDB"
   ],
   "test-depends": [
   ],
   "build-depends": [
   ],
   "provides": {
+    "Session": "lib/Session/Session.rakumod",
     "Routes.pm6": "lib/Routes.pm6"
   },
   "auth": "Write me!",
