@@ -1,6 +1,6 @@
 use Config;
 our $*C = Config.new();
-our $*DB = $*C.DB;
+our $*DB := $*C.DB;
 
 use Cro::HTTP::Log::File;
 use Cro::HTTP::Server;
