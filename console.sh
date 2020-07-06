@@ -1,2 +1,2 @@
 #!/bin/bash
-raku -I. -MRoutes
+rlwrap raku -I.

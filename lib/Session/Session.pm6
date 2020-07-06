@@ -1,6 +1,7 @@
 use Cro::HTTP::Auth;
 use Cro::HTTP::Auth::Basic;
 use Cro::HTTP::Session::Persistent;
+use JSON::Fast;
 
 unit module Session;
 
@@ -41,7 +42,8 @@ class SessionStore does Cro::HTTP::Session::Persistent[SessionAuth] {
 
     # This will be called whenever we need to save session state.
     method save(Str $session-id, Session $session --> Nil) {
-        !!! 'Save session $session under $session-id, probably with a timestamp'
+        my $blob = to-json $session.Capture.hash;
+        
     }
 
     # Clear old sessions

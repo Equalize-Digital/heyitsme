@@ -7,18 +7,18 @@
   "name": "heyitsme",
   "source-url": "Write me!",
   "depends": [
-    "Cro::HTTP", "MongoDB"
+    "Cro::HTTP", "Cro::HTTP::Router", "MongoDB", "JSON::Fast"
   ],
   "test-depends": [
   ],
   "build-depends": [
   ],
   "provides": {
-    "Routers::Auth": "lib/Routers/Auth.rakumod",
-    "Session::Session": "lib/Session/Session.rakumod",
-    "Config": "lib/Config.rakumod",
-    "Routes": "lib/Routes.rakumod",
-    "service": "service.raku"
+    "service": "service.raku",
+    "Routers::Auth": "lib/Routers/Auth.pm6",
+    "Session::Session": "lib/Session/Session.pm6",
+    "Config": "lib/Config.pm6",
+    "Routes": "lib/Routes.pm6"
   },
   "auth": "Write me!",
   "description": "Write me!",
